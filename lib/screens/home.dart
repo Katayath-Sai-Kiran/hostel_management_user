@@ -1,3 +1,4 @@
+import 'package:flip_card/flip_card.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -17,6 +18,30 @@ class HomeScreen extends StatelessWidget {
           style: GoogleFonts.poppins(color: kWhiteColor),
         ),
         actions: [
+          Stack(
+            children: [
+              IconButton(
+                onPressed: () {},
+                icon: const Icon(Iconsax.notification),
+                color: kWhiteColor,
+              ),
+              Positioned(
+                  right: 8,
+                  top: 2,
+                  child: Container(
+                    padding: const EdgeInsets.all(4),
+                    decoration: const BoxDecoration(
+                        shape: BoxShape.circle, color: Colors.red),
+                    child: Text(
+                      '8',
+                      style: GoogleFonts.poppins(
+                        color: kWhiteColor,
+                        fontSize: 10,
+                      ),
+                    ),
+                  ))
+            ],
+          ),
           IconButton(
             onPressed: () {},
             icon: const Icon(Iconsax.user),
@@ -79,18 +104,107 @@ class HomeScreen extends StatelessWidget {
                       childAspectRatio: 0.75,
                       crossAxisCount: 2),
                   itemBuilder: (conetext, index) {
-                    return Container(
-                      decoration: BoxDecoration(
-                          color: Colors.purple.shade50,
-                          borderRadius: BorderRadius.circular(8.0)),
-                      child: Center(
-                        child: Text(
-                          '0${(index + 1)}',
-                          style: GoogleFonts.karla(
-                              fontSize: 72.0,
-                              fontWeight: FontWeight.bold,
-                              color: kPrimaryColor
-                                  .withOpacity(index == 2 ? 0.5 : 0.2)),
+                    return FlipCard(
+                      back: Card(
+                        child: Padding(
+                          padding: const EdgeInsets.all(12.0),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Center(
+                                child: CircleAvatar(
+                                  child: Icon(
+                                    Iconsax.user,
+                                    color: kPrimaryColor,
+                                  ),
+                                ),
+                              ),
+                              const SizedBox(height: 16.0),
+                              Container(
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 6, vertical: 4.0),
+                                decoration: BoxDecoration(
+                                    color: kPrimaryColor.withOpacity(0.1),
+                                    borderRadius: BorderRadius.circular(4.0)),
+                                child: Row(
+                                  children: [
+                                    const Icon(
+                                      Iconsax.emoji_happy,
+                                      size: 14.0,
+                                    ),
+                                    const SizedBox(width: 8.0),
+                                    Text(
+                                      'Venky',
+                                      style: GoogleFonts.karla(fontSize: 12),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              const SizedBox(height: 8.0),
+                              Container(
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 6, vertical: 4.0),
+                                decoration: BoxDecoration(
+                                    color: kPrimaryColor.withOpacity(0.1),
+                                    borderRadius: BorderRadius.circular(4.0)),
+                                child: Row(
+                                  children: [
+                                    const Icon(
+                                      Iconsax.call,
+                                      size: 14.0,
+                                    ),
+                                    const SizedBox(width: 8.0),
+                                    Flexible(
+                                      child: Text(
+                                        '+91 9110518247',
+                                        style: GoogleFonts.karla(fontSize: 12),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              const SizedBox(height: 8.0),
+                              Container(
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 6, vertical: 4.0),
+                                decoration: BoxDecoration(
+                                    color: kPrimaryColor.withOpacity(0.1),
+                                    borderRadius: BorderRadius.circular(4.0)),
+                                child: Row(
+                                  children: [
+                                    const Icon(
+                                      Iconsax.magic_star,
+                                      size: 14.0,
+                                    ),
+                                    const SizedBox(width: 8.0),
+                                    Flexible(
+                                      child: Text(
+                                        'venkypotham@gmail.com',
+                                        style: GoogleFonts.karla(fontSize: 12),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      fill: Fill.fillBack,
+                      flipOnTouch: true,
+                      front: Container(
+                        decoration: BoxDecoration(
+                            color: Colors.purple.shade50,
+                            borderRadius: BorderRadius.circular(8.0)),
+                        child: Center(
+                          child: Text(
+                            '0${(index + 1)}',
+                            style: GoogleFonts.karla(
+                                fontSize: 72.0,
+                                fontWeight: FontWeight.bold,
+                                color: kPrimaryColor
+                                    .withOpacity(index == 2 ? 0.5 : 0.2)),
+                          ),
                         ),
                       ),
                     );
