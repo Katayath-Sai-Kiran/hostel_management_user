@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flip_card/flip_card.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -474,6 +475,23 @@ class UpdateKeyStateSheet extends StatelessWidget {
                           .collection('rooms')
                           .doc(roomId)
                           .update({'keyStatus': updatedKeyState});
+
+                      DocumentSnapshot userDocument = await FirebaseFirestore
+                          .instance
+                          .collection('users')
+                          .doc('F09mh8Ngvjhp5vF0g2UG')
+                          .get();
+
+                      Map user = userDocument.data() as Map;
+
+                      await FirebaseFirestore.instance
+                          .collection('activity')
+                          .add({
+                        'userId': userDocument.id,
+                        'roomId': roomId,
+                        'activity': "${user['name']} updated the key's status",
+                        'status': updatedKeyState,
+                      });
                       Get.back();
                       Fluttertoast.showToast(
                           msg: 'Key status updated successfully');
