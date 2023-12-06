@@ -4,8 +4,11 @@ import 'package:get/get.dart';
 import 'package:hostel_management_user/constants.dart';
 import 'package:hostel_management_user/controllers/navigation_controller.dart';
 import 'package:hostel_management_user/screens/activity.dart';
+import 'package:hostel_management_user/screens/forgot_password.dart';
 import 'package:hostel_management_user/screens/home.dart';
+import 'package:hostel_management_user/screens/login_scren.dart';
 import 'package:hostel_management_user/screens/payments.dart';
+import 'package:hostel_management_user/screens/signup_screen.dart';
 import 'package:hostel_management_user/utils.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:provider/provider.dart';
@@ -24,7 +27,8 @@ class WrapperScreen extends StatelessWidget {
         )),
         home: Consumer<NavigationController>(
             builder: (context, NavigationController navigationController, _) {
-          return Scaffold(
+          return const LoginScreen();
+          Scaffold(
             body: IndexedStack(
               index: navigationController.selectedIndex,
               children: const [
